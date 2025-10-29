@@ -1,16 +1,26 @@
 import random
 
 def get_computer_choice():
-    return random.choice(["rock", "paper", "scissors"])
+    return random.choice(["pierre", "feuille", "ciseaux"])
 
 def determine_winner(player, computer):
+    # Vérifier que les choix sont valides (DEDANS la fonction)
+    valid = ["pierre", "feuille", "ciseaux"]
+    
+    if player not in valid:
+        raise ValueError(f"Choix invalide: {player}")
+    
+    if computer not in valid:
+        raise ValueError(f"Choix invalide: {computer}")
+    
+    # Ensuite le reste du code
     if player == computer:
-        return "tie"
-    elif player == "rock" and computer == "scissors":
-        return "win"
-    elif player == "paper" and computer == "rock":
-        return "win"
-    elif player == "scissors" and computer == "paper":
-        return "win"
+        return "Égalité"
+    elif (
+        (player == "pierre" and computer == "ciseaux") or
+        (player == "feuille" and computer == "pierre") or
+        (player == "ciseaux" and computer == "feuille")
+    ):
+        return "Joueur"
     else:
-        return "lose"
+        return "Ordinateur"
